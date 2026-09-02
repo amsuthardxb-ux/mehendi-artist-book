@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mehendi Artist Book</title>
+<style>
+:root{--maroon:#4a2118;--green:#566b5d;--cream:#fff8ef;--gold:#d9a653;--ink:#2e211d;--muted:#756963;--card:#fff;--line:#eadfd4;--shadow:0 14px 40px rgba(74,33,24,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.top{position:sticky;top:0;z-index:20;background:rgba(74,33,24,.97);color:#fff;padding:13px 5%;display:flex;align-items:center;justify-content:space-between}.brand{font-family:Georgia,serif;font-size:23px;font-weight:700}.brand small{display:block;font:9px Arial;letter-spacing:3px;color:#eacb91;margin-top:2px}.nav{display:flex;gap:8px}.nav button{border:0;background:transparent;color:#fff;padding:9px 11px;border-radius:9px}.nav button:hover{background:#ffffff18}
+.hero{background:linear-gradient(115deg,#566b5d,#6e8075);color:#fff;padding:64px 6%;min-height:500px;display:flex;align-items:center}.hero-inner{max-width:760px}.eyebrow{font-size:12px;letter-spacing:3px;color:#f4ca75;font-weight:800}.hero h1{font:700 clamp(46px,9vw,84px)/.92 Georgia,serif;margin:17px 0}.hero p{max-width:650px;font-size:18px;line-height:1.6;color:#f5f1ea}.search{background:#fff;border-radius:14px;padding:6px;display:flex;max-width:680px;box-shadow:0 12px 35px #0002}.search input{flex:1;border:0;outline:0;padding:14px;font-size:16px;border-radius:10px}.primary{background:var(--gold);border:0;color:#2b2119;font-weight:800;padding:13px 19px;border-radius:10px}
+section{padding:48px 6%}.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:22px}.head h2{margin:0;font:700 31px Georgia,serif}.head span{color:#9a6a37;font-size:13px}
+.categories{display:grid;grid-template-columns:repeat(6,minmax(100px,1fr));gap:12px}.cat{background:#fff;border:1px solid var(--line);padding:19px 10px;border-radius:16px;text-align:center;box-shadow:0 5px 18px #4a21180b}.cat b{display:block;font-size:30px;margin-bottom:7px}.cat.active{outline:2px solid var(--gold);background:#fff4df}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:17px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.25s}.card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(74,33,24,.16)}.card img{width:100%;height:215px;object-fit:cover;background:#eee}.body{padding:15px}.body h3{margin:0 0 6px;font:700 18px Georgia,serif}.muted{color:var(--muted);font-size:13px;line-height:1.6}.row{display:flex;gap:8px;align-items:center}.row button{flex:1;border:0;border-radius:9px;padding:11px}.dark{background:var(--maroon);color:#fff}.light{background:#f2e7db;color:var(--maroon)}.price{font-weight:800;margin:11px 0}
+.artist{display:flex;gap:14px;align-items:center}.artist img{width:72px;height:72px;border-radius:50%;object-fit:cover}.badge{color:#327151;font-size:12px;font-weight:800}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 30px #4a21180b}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:#f8efe5;padding:18px;border-radius:14px}.stat b{display:block;font-size:25px;color:var(--maroon)}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.show{display:flex}.modalbox{background:#fff;width:min(560px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:24px}.close{float:right;border:0;background:none;font-size:28px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;outline:none}.full{grid-column:1/-1}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tabs button{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:10px}.tabs button.on{background:var(--maroon);color:#fff}
+footer{background:var(--maroon);color:#fff;padding:35px 6%;text-align:center;line-height:1.7}
+.bottom{display:none}.logo-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#d9a653,#f2d69b);display:inline-grid;place-items:center;color:#4a2118;font-size:22px;box-shadow:0 5px 15px #0002}.brand-wrap{display:flex;gap:10px;align-items:center}.profile-actions{margin-top:13px}.paybox{background:#fff8ef;border:1px dashed #d9a653;border-radius:14px;padding:14px;margin-top:12px}.paybox b{color:#4a2118}.small{font-size:11px;color:var(--muted)}.secure{font-size:12px;color:#327151;font-weight:700;margin-top:8px}.profile-modal img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 8px 25px #0002}.profile-head{display:flex;gap:18px;align-items:center;margin-bottom:18px}.profile-head h2{margin:0 0 6px}.wa{background:#1fa463!important;color:#fff!important}.pay{background:#6f3cc3!important;color:#fff!important}
+@media(max-width:750px){body{padding-bottom:62px}.top{padding:10px 4%}.brand{font-size:18px}.brand small{font-size:7px}.hero{min-height:540px}.hero h1{font-size:48px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card img{height:170px}.body{padding:12px}.body h3{font-size:16px}.categories{gap:8px}.cat{padding:14px 6px}.section{padding-left:4%;padding-right:4%}.formgrid{gap:9px}.modalbox{padding:18px}.profile-head{align-items:flex-start}.profile-head img{width:82px;height:82px}}.categories{grid-template-columns:repeat(3,1fr)}.hero{padding:45px 6%}.search{display:block;background:none;box-shadow:none}.search input{width:100%;margin-bottom:8px}.search .primary{width:100%}.stats{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:1fr}.bottom{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:30;justify-content:space-around;padding:8px}.bottom button{border:0;background:none;font-size:11px;color:var(--maroon)}.bottom span{display:block;font-size:20px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand-wrap"><div class="logo-mark">🌿</div><div class="brand">Mehendi Artist Book<small>DISCOVER • BOOK • CELEBRATE</small></div></div><div class="nav">
+<button onclick="go('home')">Home</button><button onclick="go('designs')">Designs</button><button onclick="go('artists')">Artists</button><button onclick="openAdmin()">Admin</button>
+</div></header>
+
+<main id="home">
+<div class="hero"><div class="hero-inner"><div class="eyebrow">THE CELEBRATION STARTS HERE</div><h1>Find the mehendi you'll remember.</h1><p>Discover beautiful mehendi designs, meet talented artists and book the perfect artist for your special occasion.</p><div class="search"><input id="q" placeholder="Search designs or artists..." oninput="searchAll()"><button class="primary" onclick="searchAll()">Search</button></div></div></div>
+
+<section><div class="head"><h2>Explore Categories</h2><span>Choose your style</span></div><div class="categories" id="cats"></div></section>
+<section id="designs"><div class="head"><h2>Popular Mehendi Designs</h2><span id="designCount"></span></div><div class="grid" id="designGrid"></div></section>
+<section id="artists" style="background:#f6ede2"><div class="head"><h2>Top Artists</h2><button class="primary" onclick="openArtistForm()">+ Add Artist</button></div><div class="grid" id="artistGrid"></div></section>
+
+<section><div class="panel"><div class="head"><h2>List Your Business</h2></div><p class="muted">Are you a mehendi artist? Add your profile, services, pricing and portfolio. New submissions can be reviewed by the admin.</p><button class="primary" onclick="openArtistForm()">Register as Artist</button></div></section>
+</main>
+
+<footer>🌿 <b>Mehendi Artist Book</b><br>Verified artists • Easy booking • Beautiful designs<br>© 2026 Mehendi Artist Book</footer>
+
+<div class="bottom"><button onclick="go('home')"><span>⌂</span>Home</button><button onclick="go('designs')"><span>♡</span>Designs</button><button onclick="go('artists')"><span>♧</span>Artists</button><button onclick="openBookings()"><span>▣</span>Bookings</button><button onclick="openAdmin()"><span>⚙</span>Admin</button></div>
+
+<div class="modal" id="artistModal"><div class="modalbox"><button class="close" onclick="closeModal('artistModal')">×</button><h2>Add / Register Artist</h2><p class="muted">Artist profiles are stored in this browser.</p><form onsubmit="saveArtist(event)"><div class="formgrid">
+<div class="field"><label>Artist name *</label><input id="artistName" required></div>
+<div class="field"><label>City / Location *</label><input id="artistLocation" required placeholder="Nagaur, Rajasthan"></div>
+<div class="field"><label>Mobile / WhatsApp</label><input id="artistPhone"></div>
+<div class="field"><label>Experience</label><input id="artistExp" placeholder="5 years"></div>
+<div class="field"><label>Starting price</label><input id="artistPrice" placeholder="₹2,500"></div>
+<div class="field"><label>Specialty</label><select id="artistType"><option>Bridal</option><option>Arabic</option><option>Traditional</option><option>All styles</option></select></div>
+<div class="field full"><label>Profile photo URL (optional)</label><input id="artistImage" placeholder="https://..."></div>
+<div class="field full"><label>About</label><textarea id="artistAbout" rows="3"></textarea></div>
+<div class="full"><button class="primary" type="submit">Save Artist</button></div>
+</div></form></div></div>
+
+<div class="modal" id="bookingModal"><div class="modalbox"><button class="close" onclick="closeModal('bookingModal')">×</button><h2>Book Artist</h2><form onsubmit="saveBooking(event)"><div class="formgrid">
+<div class="field full"><label>Artist</label><input id="bookArtist" readonly></div>
+<div class="field"><label>Your name *</label><input id="bookName" required></div>
+<div class="field"><label>Phone *</label><input id="bookPhone" required></div>
+<div class="field"><label>Date *</label><input id="bookDate" type="date" required></div>
+<div class="field"><label>Time *</label><input id="bookTime" type="time" required></div>
+<div class="field full"><label>Event location *</label><input id="bookLocation" required></div>
+<div class="field full"><label>Notes</label><textarea id="bookNotes" rows="3"></textarea></div>
+<div class="full"><button class="primary" type="submit">Confirm Booking</button></div>
+</div></form></div></div>
+<div class="modal" id="adminModal"><div class="modalbox">
+<button class="close" onclick="closeModal('adminModal')">×</button>
+<div class="head"><h2>Admin Dashboard</h2><button class="light" onclick="logoutAdmin()">Logout</button></div>
+<p class="secure">🔒 Local admin protection</p>
+<div class="stats"><div class="stat"><b id="sArtists">0</b>Artists</div><div class="stat"><b id="sDesigns">0</b>Designs</div><div class="stat"><b id="sBookings">0</b>Bookings</div><div class="stat"><b id="sFeatured">0</b>Featured</div></div>
+<div style="margin-top:20px"><button class="primary" onclick="openArtistForm()">➕ Add Artist</button><button class="light" onclick="refreshAdmin()">↻ Refresh</button><button class="light" onclick="resetData()">Reset Data</button></div>
+<div class="tabs" style="margin-top:20px"><button id="tabArtists" class="on">Artists</button><button id="tabBookings">Bookings</button></div>
+<div id="adminArtists"></div><div id="adminBookings" style="display:none"></div>
+</div></div></div>
+
+<div class="modal" id="designModal"><div class="modalbox"><button class="close" onclick="closeModal('designModal')">×</button><div id="designContent"></div></div></div>
+<div class="modal profile-modal" id="profileModal"><div class="modalbox"><button class="close" onclick="closeModal('profileModal')">×</button><div id="profileContent"></div></div></div>
+<div class="modal" id="paymentModal"><div class="modalbox"><button class="close" onclick="closeModal('paymentModal')">×</button><h2>Secure Booking Payment</h2><p class="muted">Choose a payment method to pay the booking advance.</p><div class="paybox"><b>UPI / QR Payment</b><p class="small">Add your UPI ID or QR image here later.</p><input id="upiId" placeholder="yourname@upi" style="width:100%;padding:11px;border:1px solid var(--line);border-radius:9px"></div><button class="primary pay" style="width:100%;margin-top:12px" onclick="payBooking()">Pay Advance</button><div class="secure">🔒 Demo payment flow — connect a real payment gateway before accepting money.</div></div></div>
+<script>
+const imgs=[
+["Royal Bridal","Bridal","https://mehndidesign.beauty/images/dark-stain-traditional-bridal-mehndi-35.jpeg"],
+["Arabic Floral","Arabic","https://mehndidesign.beauty/images/beautiful-floral-arabic-mehndi-henna-design-for-back-hand-211.jpeg"],
+["Simple Mandala","Simple","https://mehndidesign.beauty/_next/image?q=75&url=https%3A%2F%2Fmehndidesign.beauty%2Fimages%2Fsimple-henna-designs.webp&w=3840"],
+["Engagement Mandala","Engagement","https://i.pinimg.com/736x/85/a1/63/85a16387d71d69beb7e25d1aef87c714.jpg"],
+["Festival Floral","Festival","https://story.com.pk/wp-content/uploads/2022/04/Kashees-Artist-Gorgeous-Mehndi-Designs-Chand-Raat-2021-12.jpg"],
+["Kids Cute","Kids","https://assets.dreamweddinghub.com/image/uploadEditor/3f7f7740-beec-4d36-808d-f7657b850714.webp"],
+["Finger Vine","Simple","https://cdn0.weddingwire.in/articles/images/1/9/3/3/img_93391/simple-finger-mehndi-designs-pinterest-ring-finger-mehndi-design.jpg"],
+["Royal Palm","Bridal","https://i.pinimg.com/736x/85/a1/63/85a16387d71d69beb7e25d1aef87c714.jpg"],
+["Lotus Mandala","Festival","https://i.pinimg.com/736x/85/a1/63/85a16387d71d69beb7e25d1aef87c714.jpg"],
+["Easy Floral","Simple","https://mehndidesign.beauty/_next/image?q=75&url=https%3A%2F%2Fmehndidesign.beauty%2Fimages%2Fsimple-henna-designs.webp&w=3840"],
+["Cute Butterfly","Kids","https://assets.dreamweddinghub.com/image/uploadEditor/3f7f7740-beec-4d36-808d-f7657b850714.webp"],
+["Eid Mandala","Festival","https://story.com.pk/wp-content/uploads/2022/04/Kashees-Artist-Gorgeous-Mehndi-Designs-Chand-Raat-2021-12.jpg"]
+];
+
+const categories=[["💍","Bridal"],["🌿","Arabic"],["✨","Simple"],["❤️","Engagement"],["🪔","Festival"],["🌸","Kids"]];
+
+const demo=[
+{name:"Priya Mehendi Art",location:"Jaipur, Rajasthan",exp:"6+ years",price:"₹5,000",rating:"4.8",phone:"",image:"https://randomuser.me/api/portraits/women/44.jpg",featured:true,type:"Bridal"},
+{name:"Henna By Ayesha",location:"Jodhpur, Rajasthan",exp:"5+ years",price:"₹4,000",rating:"4.7",phone:"",image:"https://randomuser.me/api/portraits/women/65.jpg",featured:false,type:"Arabic"},
+{name:"Ruchi Mehendi Design",location:"Nagaur, Rajasthan",exp:"7+ years",price:"₹6,000",rating:"4.9",phone:"",image:"https://randomuser.me/api/portraits/women/68.jpg",featured:true,type:"Traditional"}
+];
+
+
+const KEYS={artists:"mab_artists",bookings:"mab_bookings",favorites:"mab_favorites",adminAuth:"mab_admin_auth"};
+
+function read(key,fallback){
+  try{
+    const raw=localStorage.getItem(key);
+    return raw===null?fallback:JSON.parse(raw);
+  }catch(e){return fallback;}
+}
+function write(key,value){localStorage.setItem(key,JSON.stringify(value));}
+function getA(){return read(KEYS.artists,demo);}
+function setA(x){write(KEYS.artists,x);}
+function getB(){return read(KEYS.bookings,[]);}
+function setB(x){write(KEYS.bookings,x);}
+function getF(){return read(KEYS.favorites,[]);}
+function setF(x){write(KEYS.favorites,x);}
+
+function esc(v){
+  return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+}
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth"});}
+function openModal(id){document.getElementById(id)?.classList.add("show");}
+function closeModal(id){document.getElementById(id)?.classList.remove("show");}
+
+function renderCats(){
+  document.getElementById("cats").innerHTML=categories.map(c=>
+    `<button class="cat" onclick="category('${c[1]}',this)"><b>${c[0]}</b>${c[1]}</button>`
+  ).join("");
+}
+
+function isFav(name){return getF().includes(name);}
+function toggleFavorite(name){
+  let f=getF();
+  if(f.includes(name)){f=f.filter(x=>x!==name);alert("Removed from favorites.");}
+  else{f.push(name);alert("Added to favorites ❤️");}
+  setF(f);
+  renderDesigns();
+}
+
+function renderDesigns(list=imgs){
+  document.getElementById("designCount").textContent=list.length+" designs";
+  document.getElementById("designGrid").innerHTML=list.map(d=>
+    `<article class="card">
+      <img src="${esc(d[2])}" alt="${esc(d[0])}" onerror="this.style.background='#eee';this.removeAttribute('src')">
+      <div class="body"><h3>${esc(d[0])}</h3><div class="muted">${esc(d[1])} Mehendi</div>
+      <div class="row" style="margin-top:12px">
+        <button class="light" onclick="toggleFavorite('${d[0].replace(/'/g,"\\'")}')">${isFav(d[0])?"♥ Saved":"♡ Save"}</button>
+        <button class="dark" onclick="viewDesign('${d[0].replace(/'/g,"\\'")}','${d[2].replace(/'/g,"\\'")}')">View</button>
+      </div></div>
+    </article>`
+  ).join("") || `<div class="panel">No designs found.</div>`;
+}
+
+function renderArtists(list=getA()){
+  document.getElementById("artistGrid").innerHTML=list.map((a,i)=>
+    `<article class="card"><div class="body">
+      <div class="artist"><img src="${esc(a.image||'https://randomuser.me/api/portraits/women/44.jpg')}" alt="${esc(a.name)}">
+        <div><h3>${esc(a.name)}</h3><div class="badge">✓ Verified Artist</div></div>
+      </div>
+      <div class="muted" style="margin-top:12px">📍 ${esc(a.location)}<br>⭐ ${esc(a.rating||"New")} • ${esc(a.exp||"New artist")}<br>🌿 ${esc(a.type||"Mehendi Artist")}</div>
+      <div class="price">Starting ${esc(a.price||"Contact")}</div>
+      <div class="row"><button class="light wa" onclick="contact('${String(a.phone||"").replace(/'/g,"\\'")}')">WhatsApp</button>
+      <button class="dark" onclick="openProfile(${i})">Profile</button></div>
+    </div></article>`
+  ).join("") || `<div class="panel">No artists found.</div>`;
+}
+
+function category(cat,el){
+  document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
+  el.classList.add("active");
+  renderDesigns(imgs.filter(x=>x[1]===cat));
+  go("designs");
+}
+
+function searchAll(){
+  const q=document.getElementById("q").value.toLowerCase().trim();
+  renderDesigns(imgs.filter(x=>x.join(" ").toLowerCase().includes(q)));
+  renderArtists(getA().filter(x=>(x.name+" "+x.location+" "+(x.type||"")+" "+(x.about||"")).toLowerCase().includes(q)));
+}
+
+function openArtistForm(){
+  closeModal("adminModal");
+  document.getElementById("artistModal").querySelector("form").reset();
+  openModal("artistModal");
+}
+
+function saveArtist(e){
+  e.preventDefault();
+  const a={
+    name:document.getElementById("artistName").value.trim(),
+    location:document.getElementById("artistLocation").value.trim(),
+    phone:document.getElementById("artistPhone").value.trim(),
+    exp:document.getElementById("artistExp").value.trim()||"New artist",
+    price:document.getElementById("artistPrice").value.trim()||"Contact",
+    type:document.getElementById("artistType").value,
+    image:document.getElementById("artistImage").value.trim()||"https://randomuser.me/api/portraits/women/44.jpg",
+    about:document.getElementById("artistAbout").value.trim(),
+    rating:"New",featured:false
+  };
+  const arr=getA();arr.push(a);setA(arr);
+  e.target.reset();closeModal("artistModal");renderArtists();refreshAdmin();
+  alert("Artist saved successfully!");
+}
+
+function openBooking(name){
+  document.getElementById("bookArtist").value=name;
+  document.getElementById("bookDate").min=new Date().toISOString().split("T")[0];
+  openModal("bookingModal");
+}
+
+function saveBooking(e){
+  e.preventDefault();
+  const b={
+    id:"MAB-"+Date.now().toString().slice(-8),
+    artist:document.getElementById("bookArtist").value,
+    name:document.getElementById("bookName").value.trim(),
+    phone:document.getElementById("bookPhone").value.trim(),
+    date:document.getElementById("bookDate").value,
+    time:document.getElementById("bookTime").value,
+    location:document.getElementById("bookLocation").value.trim(),
+    notes:document.getElementById("bookNotes").value.trim(),
+    status:"Pending",
+    createdAt:new Date().toISOString()
+  };
+  const x=getB();x.push(b);setB(x);
+  e.target.reset();closeModal("bookingModal");refreshAdmin();
+  alert("Booking saved! Booking ID: "+b.id);
+}
+
+function openBookings(){
+  const x=getB();
+  if(!x.length){alert("No bookings yet.");return;}
+  const text=x.map(b=>`${b.id} • ${b.artist} • ${b.name} • ${b.date} ${b.time} • ${b.status}`).join("\n");
+  alert(text);
+}
+
+function contact(phone){
+  const p=String(phone||"").replace(/\D/g,"");
+  if(p) location.href="https://wa.me/"+p;
+  else alert("WhatsApp number is not added for this artist yet.");
+}
+
+
+
+
+
+
+
+
+
+
+
+function logoutAdmin(){
+  sessionStorage.removeItem("mab_admin");
+  sessionStorage.removeItem("mab_admin_id");
+  closeModal("adminModal");
+  alert("Admin logged out.");
+}
+
+function refreshAdmin(){
+  const a=getA(),b=getB();
+  document.getElementById("sArtists").textContent=a.length;
+  document.getElementById("sDesigns").textContent=imgs.length;
+  document.getElementById("sBookings").textContent=b.length;
+  document.getElementById("sFeatured").textContent=a.filter(x=>x.featured).length;
+  renderAdminArtists();
+  renderAdminBookings();
+}
+
+function renderAdminArtists(){
+  const a=getA();
+  document.getElementById("adminArtists").innerHTML=a.map((x,i)=>
+    `<div class="panel" style="margin:8px 0;padding:13px">
+      <b>${esc(x.name)}</b><div class="muted">${esc(x.location)} • ${esc(x.price)}</div>
+      <button class="light" style="margin-top:7px;padding:8px;border:0;border-radius:8px" onclick="editArtist(${i})">Edit</button>
+      <button class="light" style="margin-top:7px;padding:8px;border:0;border-radius:8px" onclick="toggleFeatured(${i})">${x.featured?"Unfeature":"Feature"}</button>
+      <button class="light" style="margin-top:7px;padding:8px;border:0;border-radius:8px" onclick="deleteArtist(${i})">Delete</button>
+    </div>`
+  ).join("") || `<div class="muted">No artists yet.</div>`;
+}
+
+function renderAdminBookings(){
+  const b=getB();
+  document.getElementById("adminBookings").innerHTML=b.length ? b.map((x,i)=>
+    `<div class="panel" style="margin:8px 0;padding:13px">
+      <b>${esc(x.id)}</b>
+      <div class="muted">${esc(x.artist)} • ${esc(x.name)} • ${esc(x.phone)}<br>
+      📅 ${esc(x.date)} ${esc(x.time)} • 📍 ${esc(x.location)}<br>📝 ${esc(x.notes||"No notes")}</div>
+      <select onchange="updateBookingStatus(${i},this.value)" style="margin-top:8px;padding:8px;border:1px solid var(--line);border-radius:8px">
+        ${["Pending","Confirmed","Completed","Cancelled"].map(s=>`<option ${x.status===s?"selected":""}>${s}</option>`).join("")}
+      </select>
+      <button class="light" style="margin-top:7px;padding:8px;border:0;border-radius:8px" onclick="deleteBooking(${i})">Delete</button>
+    </div>`
+  ).join("") : `<div class="muted">No bookings yet.</div>`;
+}
+
+function showAdminTab(tab){
+  const artists=tab==="artists";
+  document.getElementById("adminArtists").style.display=artists?"block":"none";
+  document.getElementById("adminBookings").style.display=artists?"none":"block";
+  document.getElementById("tabArtists").classList.toggle("on",artists);
+  document.getElementById("tabBookings").classList.toggle("on",!artists);
+}
+
+function editArtist(i){
+  const a=getA()[i];if(!a)return;
+  closeModal("adminModal");openModal("artistModal");
+  document.getElementById("artistName").value=a.name||"";
+  document.getElementById("artistLocation").value=a.location||"";
+  document.getElementById("artistPhone").value=a.phone||"";
+  document.getElementById("artistExp").value=a.exp||"";
+  document.getElementById("artistPrice").value=a.price||"";
+  document.getElementById("artistType").value=a.type||"Bridal";
+  document.getElementById("artistImage").value=a.image||"";
+  document.getElementById("artistAbout").value=a.about||"";
+  const form=document.querySelector("#artistModal form");
+  form.dataset.editIndex=i;
+}
+
+function toggleFeatured(i){
+  const a=getA();if(!a[i])return;
+  a[i].featured=!a[i].featured;setA(a);renderArtists();refreshAdmin();
+}
+function deleteArtist(i){
+  const a=getA();
+  if(confirm("Delete this artist?")){a.splice(i,1);setA(a);renderArtists();refreshAdmin();}
+}
+function updateBookingStatus(i,status){
+  const b=getB();if(!b[i])return;
+  b[i].status=status;setB(b);refreshAdmin();
+}
+function deleteBooking(i){
+  const b=getB();
+  if(confirm("Delete this booking?")){b.splice(i,1);setB(b);refreshAdmin();}
+}
+
+function resetData(){
+  if(confirm("Reset all added artists and bookings to the original demo data?")){
+    localStorage.removeItem(KEYS.artists);localStorage.removeItem(KEYS.bookings);localStorage.removeItem(KEYS.favorites);
+    renderArtists();renderDesigns();refreshAdmin();alert("Demo data restored.");
+  }
+}
+
+function viewDesign(name,url){
+  document.getElementById("designContent").innerHTML=
+    `<h2>${esc(name)}</h2><img src="${esc(url)}" alt="${esc(name)}" style="width:100%;max-height:70vh;object-fit:contain;border-radius:14px;background:#f5eee6">
+    <div class="row" style="margin-top:12px"><button class="light" onclick="shareDesign('${name.replace(/'/g,"\\'")}')">📤 Share</button><button class="dark" onclick="go('artists');closeModal('designModal')">Book Artist</button></div>`;
+  openModal("designModal");
+}
+function shareDesign(name){
+  const text="I found this mehendi design: "+name+" on Mehendi Artist Book.";
+  if(navigator.share) navigator.share({title:name,text:text}).catch(()=>{});
+  else if(navigator.clipboard) navigator.clipboard.writeText(text).then(()=>alert("Design text copied."));
+  else alert(text);
+}
+
+function openProfile(i){
+  const a=getA()[i];if(!a)return;
+  const img=a.image||'https://randomuser.me/api/portraits/women/44.jpg';
+  document.getElementById("profileContent").innerHTML=
+    `<div class="profile-head"><img src="${esc(img)}"><div><h2>${esc(a.name)}</h2><div class="badge">✓ Verified Artist</div><div class="muted">📍 ${esc(a.location)}</div></div></div>
+    <div class="panel"><div class="muted">⭐ ${esc(a.rating||"New")} • ${esc(a.exp||"New artist")}<br>🌿 ${esc(a.type||"Mehendi Artist")}</div>
+    <div class="price">Starting ${esc(a.price||"Contact")}</div><p class="muted">${esc(a.about||"Beautiful mehendi designs for weddings, engagements, festivals and special occasions.")}</p>
+    <div class="row profile-actions"><button class="wa" onclick="contact('${String(a.phone||"").replace(/'/g,"\\'")}')">WhatsApp</button><button class="dark" onclick="openBooking('${String(a.name).replace(/'/g,"\\'")}')">Book Now</button></div></div>`;
+  openModal("profileModal");
+}
+
+function payBooking(){
+  alert("Demo payment only. No money is charged. Connect a payment gateway later if you want online payments.");
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("tabArtists").addEventListener("click",()=>showAdminTab("artists"));
+  document.getElementById("tabBookings").addEventListener("click",()=>showAdminTab("bookings"));
+  renderCats();renderDesigns();renderArtists();
+  document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("show");}));
+  const form=document.querySelector("#artistModal form");
+  form.addEventListener("reset",()=>delete form.dataset.editIndex);
+  form.addEventListener("submit",e=>{
+    if(form.dataset.editIndex===undefined)return;
+    e.preventDefault();
+    const i=Number(form.dataset.editIndex),a=getA()[i];if(!a)return;
+    a.name=document.getElementById("artistName").value.trim();
+    a.location=document.getElementById("artistLocation").value.trim();
+    a.phone=document.getElementById("artistPhone").value.trim();
+    a.exp=document.getElementById("artistExp").value.trim()||"New artist";
+    a.price=document.getElementById("artistPrice").value.trim()||"Contact";
+    a.type=document.getElementById("artistType").value;
+    a.image=document.getElementById("artistImage").value.trim()||"https://randomuser.me/api/portraits/women/44.jpg";
+    a.about=document.getElementById("artistAbout").value.trim();
+    setA(getA());delete form.dataset.editIndex;e.target.reset();closeModal("artistModal");renderArtists();refreshAdmin();alert("Artist updated successfully!");
+  },true);
+});
+
+
+
+
+function getAdminAccounts(){
+  try{
+    const raw=localStorage.getItem("mab_admin_accounts");
+    if(raw){
+      const arr=JSON.parse(raw);
+      if(Array.isArray(arr)) return arr;
+    }
+    const old=localStorage.getItem("mab_admin_auth");
+    if(old){
+      const one=JSON.parse(old);
+      if(one && one.id) return [one];
+    }
+  }catch(e){}
+  return [];
+}
+function saveAdminAccounts(arr){
+  localStorage.setItem("mab_admin_accounts",JSON.stringify(arr));
+}
+function adminModalBox(){
+  const modal=document.getElementById("adminModal");
+  if(!modal) return null;
+  return modal.querySelector(".modalbox") || modal.querySelector(".modal-content") || modal;
+}
+function closeAdminModal(){
+  const m=document.getElementById("adminModal");
+  if(m) m.classList.remove("show");
+}
+function openAdmin(){
+  const modal=document.getElementById("adminModal");
+  if(!modal) return;
+  modal.classList.add("show");
+  if(sessionStorage.getItem("mab_admin")==="1") renderAdmin();
+  else showAdminLogin();
+}
+function showAdminLogin(prefillId=""){
+  const box=adminModalBox();
+  if(!box) return;
+  const accounts=getAdminAccounts();
+  box.innerHTML=`
+    <button class="close" onclick="closeAdminModal()">×</button>
+    <div style="max-width:430px;margin:10px auto;padding:8px">
+      <h2>🔐 Admin Login</h2>
+      <p>Enter your Admin ID and Password.</p>
+      <input id="adminIdInput" class="input" placeholder="Admin ID / Username" autocomplete="username" value="${String(prefillId).replace(/"/g,"&quot;")}" style="width:100%;margin:7px 0">
+      <input id="adminPwInput" class="input" type="password" placeholder="Password" autocomplete="current-password" style="width:100%;margin:7px 0">
+      <div id="adminAuthMsg" style="color:#c62828;min-height:24px;margin:5px 0"></div>
+      <button class="primary" onclick="adminLogin()" style="width:100%">Login</button>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="light" onclick="showAdminRegister()" style="flex:1">Register New</button>
+        <button class="light" onclick="showForgotPassword()" style="flex:1">Forgot Password</button>
+      </div>
+      ${accounts.length ? `<p style="font-size:13px;color:#777;margin-top:10px">Registered admin accounts: ${accounts.length}</p>` : `<p style="font-size:13px;color:#777;margin-top:10px">No account yet? Tap <b>Register New</b>.</p>`}
+    </div>`;
+}
+function adminLogin(){
+  const accounts=getAdminAccounts();
+  const id=(document.getElementById("adminIdInput")?.value||"").trim();
+  const pw=document.getElementById("adminPwInput")?.value||"";
+  const msg=document.getElementById("adminAuthMsg");
+  const found=accounts.find(a=>String(a.id).toLowerCase()===id.toLowerCase() && String(a.password)===pw);
+  if(found){
+    sessionStorage.setItem("mab_admin","1");
+    sessionStorage.setItem("mab_admin_id",String(found.id));
+    renderAdmin();
+  }else{
+    if(msg) msg.textContent=accounts.length ? "Wrong Admin ID or Password." : "No account found. Tap Register New to create one.";
+  }
+}
+function showAdminRegister(){
+  const box=adminModalBox();
+  if(!box) return;
+  box.innerHTML=`
+    <button class="close" onclick="closeAdminModal()">×</button>
+    <div style="max-width:430px;margin:10px auto;padding:8px">
+      <h2>📝 Register New Admin</h2>
+      <input id="regName" class="input" placeholder="Full Name" style="width:100%;margin:6px 0">
+      <input id="regId" class="input" placeholder="Admin ID / Username" autocomplete="username" style="width:100%;margin:6px 0">
+      <input id="regEmail" class="input" type="email" placeholder="Email" autocomplete="email" style="width:100%;margin:6px 0">
+      <input id="regPw" class="input" type="password" placeholder="Password (minimum 6 characters)" autocomplete="new-password" style="width:100%;margin:6px 0">
+      <input id="regPw2" class="input" type="password" placeholder="Confirm Password" autocomplete="new-password" style="width:100%;margin:6px 0">
+      <input id="regRecovery" class="input" placeholder="Recovery Code" style="width:100%;margin:6px 0">
+      <div id="adminAuthMsg" style="color:#c62828;min-height:24px"></div>
+      <button class="primary" onclick="registerAdmin()" style="width:100%">Create Admin Account</button>
+      <button class="light" onclick="showAdminLogin()" style="width:100%;margin-top:8px">Back to Login</button>
+    </div>`;
+}
+function registerAdmin(){
+  const msg=document.getElementById("adminAuthMsg");
+  const accounts=getAdminAccounts();
+  const name=(document.getElementById("regName")?.value||"").trim();
+  const id=(document.getElementById("regId")?.value||"").trim();
+  const email=(document.getElementById("regEmail")?.value||"").trim().toLowerCase();
+  const pw=document.getElementById("regPw")?.value||"";
+  const pw2=document.getElementById("regPw2")?.value||"";
+  const recovery=(document.getElementById("regRecovery")?.value||"").trim();
+
+  if(!name||!id||!email||!pw||!recovery){msg.textContent="Please fill all fields.";return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.textContent="Please enter a valid email.";return;}
+  if(pw.length<6){msg.textContent="Password must be at least 6 characters.";return;}
+  if(pw!==pw2){msg.textContent="Passwords do not match.";return;}
+  if(recovery.length<4){msg.textContent="Recovery Code must be at least 4 characters.";return;}
+  if(accounts.some(a=>String(a.id).toLowerCase()===id.toLowerCase())){
+    msg.textContent="This Admin ID already exists. Please choose another ID.";
+    return;
+  }
+
+  const account={name,id,email,password:pw,recovery};
+  try{
+    accounts.push(account);
+    saveAdminAccounts(accounts);
+    localStorage.setItem("mab_admin_auth",JSON.stringify(account)); // compatibility
+  }catch(e){
+    msg.textContent="Account save failed. Please allow browser storage and try again.";
+    return;
+  }
+
+  sessionStorage.setItem("mab_admin","1");
+  sessionStorage.setItem("mab_admin_id",id);
+  alert("Admin account created successfully!");
+  renderAdmin();
+}
+function showForgotPassword(){
+  const box=adminModalBox();
+  if(!box) return;
+  box.innerHTML=`
+    <button class="close" onclick="closeAdminModal()">×</button>
+    <div style="max-width:430px;margin:10px auto;padding:8px">
+      <h2>🔑 Forgot Password</h2>
+      <input id="forgotId" class="input" placeholder="Admin ID / Username" style="width:100%;margin:6px 0">
+      <input id="forgotEmail" class="input" type="email" placeholder="Registered Email" style="width:100%;margin:6px 0">
+      <input id="forgotRecovery" class="input" placeholder="Recovery Code" style="width:100%;margin:6px 0">
+      <input id="forgotPw" class="input" type="password" placeholder="New Password" autocomplete="new-password" style="width:100%;margin:6px 0">
+      <input id="forgotPw2" class="input" type="password" placeholder="Confirm New Password" autocomplete="new-password" style="width:100%;margin:6px 0">
+      <div id="adminAuthMsg" style="color:#c62828;min-height:24px"></div>
+      <button class="primary" onclick="resetAdminPassword()" style="width:100%">Reset Password</button>
+      <button class="light" onclick="showAdminLogin()" style="width:100%;margin-top:8px">Back to Login</button>
+    </div>`;
+}
+function resetAdminPassword(){
+  const accounts=getAdminAccounts(), msg=document.getElementById("adminAuthMsg");
+  const id=(document.getElementById("forgotId")?.value||"").trim();
+  const email=(document.getElementById("forgotEmail")?.value||"").trim().toLowerCase();
+  const recovery=(document.getElementById("forgotRecovery")?.value||"").trim();
+  const pw=document.getElementById("forgotPw")?.value||"";
+  const pw2=document.getElementById("forgotPw2")?.value||"";
+  const idx=accounts.findIndex(a=>String(a.id).toLowerCase()===id.toLowerCase() && String(a.email).toLowerCase()===email && String(a.recovery)===recovery);
+  if(idx<0){msg.textContent="Recovery details are incorrect.";return;}
+  if(pw.length<6){msg.textContent="New password must be at least 6 characters.";return;}
+  if(pw!==pw2){msg.textContent="Passwords do not match.";return;}
+  accounts[idx].password=pw;
+  saveAdminAccounts(accounts);
+  localStorage.setItem("mab_admin_auth",JSON.stringify(accounts[idx]));
+  sessionStorage.setItem("mab_admin","1");
+  sessionStorage.setItem("mab_admin_id",String(accounts[idx].id));
+  renderAdmin();
+}
+
+function renderAdmin(){
+  if(sessionStorage.getItem("mab_admin")!=="1"){
+    showAdminLogin();
+    return;
+  }
+
+  const box=adminModalBox();
+  if(!box) return;
+
+  // Login/Register screens replace the dashboard HTML.
+  // Rebuild the dashboard BEFORE calling refreshAdmin().
+  if(!box.querySelector("#sArtists")){
+    box.innerHTML=`<button class="close" onclick="closeAdminModal()">×</button>
+      <div class="head"><h2>Admin Dashboard</h2><button class="light" onclick="logoutAdmin()">Logout</button></div>
+      <p class="secure">🔒 Local admin protection</p>
+      <div class="stats">
+        <div class="stat"><b id="sArtists">0</b>Artists</div>
+        <div class="stat"><b id="sDesigns">0</b>Designs</div>
+        <div class="stat"><b id="sBookings">0</b>Bookings</div>
+        <div class="stat"><b id="sFeatured">0</b>Featured</div>
+      </div>
+      <div style="margin-top:20px">
+        <button class="primary" onclick="openArtistForm()">➕ Add Artist</button>
+        <button class="light" onclick="refreshAdmin()">↻ Refresh</button>
+        <button class="light" onclick="resetData()">Reset Data</button>
+      </div>
+      <div class="tabs" style="margin-top:20px">
+        <button id="tabArtists" class="on">Artists</button>
+        <button id="tabBookings">Bookings</button>
+      </div>
+      <div id="adminArtists"></div>
+      <div id="adminBookings" style="display:none"></div>`;
+
+    box.querySelector("#tabArtists").addEventListener("click",()=>showAdminTab("artists"));
+    box.querySelector("#tabBookings").addEventListener("click",()=>showAdminTab("bookings"));
+  }
+
+  refreshAdmin();
+  showAdminTab("artists");
+  openModal("adminModal");
+}
+
+function adminLogout(){
+  sessionStorage.removeItem("mab_admin");
+  closeAdminModal();
+}
+</script>
+</body></html>
